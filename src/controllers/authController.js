@@ -31,18 +31,24 @@ router.get("/login", (req, res) => {
 });
 
 // POST
-router.post('/login', async (req, res) => {
-    const { email, password } = req.body;
+router.post("/login", async (req, res) => {
+  const { email, password } = req.body;
 
-    const token = await authService.login(email, password);
-    
-    res.cookie('auth', token);
+  const token = await authService.login(email, password);
 
-    res.redirect('/');
+  res.cookie("auth", token);
+
+  res.redirect("/");
 });
 
 /*##################
 ####### LOGOUT ###
 ###################*/
+
+router.get("/logout", (req, res) => {
+  res.clearCookie("auth");
+
+  res.redirect("/");
+});
 
 export default router;
