@@ -2,6 +2,7 @@ import express from 'express';
 import router from './router.js';
 import handlebars from "express-handlebars";
 import mongoose from 'mongoose';
+import cookieParser from 'cookie-parser';
 
 const app = express();
 
@@ -21,6 +22,7 @@ app.engine('hbs', handlebars.engine({
 app.set('view engine', 'hbs');
 app.set('views', 'src/views');
 
+app.use(cookieParser());
 
 app.use(router);
 app.listen(3000, () => "Server is listening on port 3000");
